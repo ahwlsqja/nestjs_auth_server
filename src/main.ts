@@ -17,6 +17,19 @@ async function bootstrap() {
       },
     },
   });
+
+  // // AUDIO_DATA_QUEUE에 대한 마이크로서비스 설정 추가
+  // const audioDataMicroservice = app.connectMicroservice<MicroserviceOptions>({
+  //   transport: Transport.RMQ,
+  //   options: {
+  //     urls: ['amqp://mo:mo@localhost:5672'],
+  //     queue: 'audio_data_queue',
+  //     queueOptions: {
+  //       durable: false,
+  //     },
+  //   },
+  // });
+  
   app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER))
   app.useGlobalPipes(new ValidationPipe({
     whitelist: true,

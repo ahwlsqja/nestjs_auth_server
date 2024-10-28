@@ -2,9 +2,10 @@ import { Type } from "class-transformer";
 import { ArrayMaxSize, ArrayNotEmpty, IsArray, IsNotEmpty, IsNumber, IsOptional, IsString, Matches } from "class-validator";
 
 export class CreateModelDto {
+    @IsOptional()
     @IsNotEmpty()
     @IsNumber()
-    userId: number;
+    userId?: number;
 
     @IsNotEmpty()
     @IsString()

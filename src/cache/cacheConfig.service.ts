@@ -13,7 +13,7 @@ export class CacheConfigService implements CacheOptionsFactory {
         const config: CacheModuleOptions = {
             store: redisStore,
             host: this.configService.get<string>(envVariableKeys.redishost),
-            password: this.configService.get<string>(envVariableKeys.redispassword),
+            // password: this.configService.get<string>(envVariableKeys.redispassword),
             port: this.configService.get<number>(envVariableKeys.redisport),
             ttl :60,
         };

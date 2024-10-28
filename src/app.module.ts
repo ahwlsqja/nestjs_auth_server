@@ -20,6 +20,7 @@ import { ResponseTimeInterceptor } from './common/interceptor/response.time.inte
 import { BearerTokenMiddleware } from './auth/middleware/bearer-token.middleware';
 import * as redisStore from 'cache-manager-redis-store'
 import { CacheConfigService } from './cache/cacheConfig.service';
+import { S3Module } from './s3/s3.module';
 
 @Module({
   imports: [
@@ -65,6 +66,17 @@ import { CacheConfigService } from './cache/cacheConfig.service';
           },
         },
       },
+      {
+        name: 'AUDIO_DATA_QUEUE',
+        transport: Transport.RMQ,
+        options: {
+          urls: ['amqp://mo:mo@localhost:5672'],
+          queue: 'audio_data_queue',
+          queueOptions: {
+            durable :false,
+          }
+        }
+      },
     ]),
     CacheModule.registerAsync({
       isGlobal: true,
@@ -97,7 +109,7 @@ import { CacheConfigService } from './cache/cacheConfig.service';
     }),
     AuthModule, 
     UserModule, 
-    CommonModule, ModelsModule
+    CommonModule, ModelsModule, S3Module
   ],
   controllers: [],
   providers: [
